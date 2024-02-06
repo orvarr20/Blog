@@ -1,0 +1,67 @@
+---
+title: "Blog Post 1: UFO Sightings"
+author: "Olivia Varricchione"
+date: "2024-02-1"
+categories: [analysis]
+---
+
+Introduction
+
+The data set is from the National UFO reporting center and includes many different variables about UFO sightings, from the location of the sighting to the shape of the UFO to whether or not there was an image. This data was retrieved from the tidyTuesday github from this link: https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-06-20/readme.md. There are 96429 different observations in the data set, and this analysis is going to focus on the variables reported_date_time, state, and day_part. The question for this analysis is what year, part of day, and state is most common among the reported UFO sightings.
+
+Primary Visualizations:
+
+```{r}
+#| warning: false
+library(tidyverse)
+library(lubridate)
+ufo_sightings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-06-20/ufo_sightings.csv')
+
+ufo_df <- ufo_sightings |> filter(country_code == "US") |> 
+  select(1, 5,9,12)
+
+ufo_df <- ufo_df |> separate(col = reported_date_time, sep = " ", into = c("date", "time")) |> 
+  mutate(date = ymd(date))
+ggplot(data = ufo_df, aes(x = date)) +
+  geom_histogram(colour = "black", fill = "white", bins = 35) +
+  theme_minimal()
+```
+
+From this plot, we can see that the number of UFO sightings dramatically increased during the early 2000s. We also see a peak in the number of sightings around 2016/2017.
+
+```{r}
+#| warning: false
+ufo_day_part <- ufo_df |> group_by(day_part) |> 
+  summarise(count = n()) |> 
+  filter(day_part != "NA") |>
+  mutate(day_part = fct_reorder(day_part, count))
+ggplot(ufo_day_part, aes(x = day_part, y = count)) +
+  geom_col() +
+  coord_flip() +
+  theme_minimal()
+```
+
+From this bar plot, we see that night is by far the most common time for UFOs to be sighted, with dawn (astronomial, nautical, and civil) being the least common times.
+
+```{r}  
+#| warning: false
+ufo_state <- ufo_df |> mutate(state = fct_recode(state, FL = "Fl")) |>
+  group_by(state) |>
+  summarise(count = n()) |>
+  mutate(state = fct_reorder(state, count))
+ggplot(ufo_state, aes(x = state, y = count)) +
+  geom_col() + 
+  coord_flip() +
+  theme_minimal() +
+  theme(axis.text = element_text(size = 7))
+```
+
+From this plot we can see that California is the most common place where UFOs are sighted, having over 11,000 recorded sightings since 1925,followed by Florida. Washington DC has the least amount of sightings with less than 100.
+
+Conclusion and Wrap-Up
+
+In recent years, UFO sightings have been more common, particularly around the year 2016/2017. The night is the most common time among the UFO sightings and California is the state with the most amount of sightings. In the future, it would be interesting to look at each sighting to see if there are multiple reports for the same sighting by different people, rather than just looking at which years, places, and times were more common overall.
+
+Connection to Class Ideas
+
+These visualizations connect to class as they are strategically chosen to show as much about the data as possible. For example, the histogram was chosen for date as it shows the center, spread, shape, and approximately the sample size, which another plot, such as a density plot, would not have shown all of these attributes of the data. Similarly, a bar plot was chosen so that the sample size and distribution could easily be seen. Additionally, the bar plots were arranged in descending order so that the audience could compare the values easier. Lastly, the theme needed to be adjusted for the state bar plot, as the names of the states were overlapping on the y axis. All of these choices relate to what we have been talking about in class on how to make the visualizations easy for the reader to see and interpret the data properly.

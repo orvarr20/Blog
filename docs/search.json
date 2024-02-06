@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/Post 1: UFO/index.html",
+    "href": "posts/Post 1: UFO/index.html",
+    "title": "Blog Post 1: UFO Sightings",
+    "section": "",
+    "text": "Introduction\nThe data set is from the National UFO reporting center and includes many different variables about UFO sightings, from the location of the sighting to the shape of the UFO to whether or not there was an image. This data was retrieved from the tidyTuesday github from this link: https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-06-20/readme.md. There are 96429 different observations in the data set, and this analysis is going to focus on the variables reported_date_time, state, and day_part. The question for this analysis is what year, part of day, and state is most common among the reported UFO sightings.\nPrimary Visualizations:\n\nlibrary(tidyverse)\nlibrary(lubridate)\nufo_sightings &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-06-20/ufo_sightings.csv')\n\nufo_df &lt;- ufo_sightings |&gt; filter(country_code == \"US\") |&gt; \n  select(1, 5,9,12)\n\nufo_df &lt;- ufo_df |&gt; separate(col = reported_date_time, sep = \" \", into = c(\"date\", \"time\")) |&gt; \n  mutate(date = ymd(date))\nggplot(data = ufo_df, aes(x = date)) +\n  geom_histogram(colour = \"black\", fill = \"white\", bins = 35) +\n  theme_minimal()\n\n\n\n\nFrom this plot, we can see that the number of UFO sightings dramatically increased during the early 2000s. We also see a peak in the number of sightings around 2016/2017.\n\nufo_day_part &lt;- ufo_df |&gt; group_by(day_part) |&gt; \n  summarise(count = n()) |&gt; \n  filter(day_part != \"NA\") |&gt;\n  mutate(day_part = fct_reorder(day_part, count))\nggplot(ufo_day_part, aes(x = day_part, y = count)) +\n  geom_col() +\n  coord_flip() +\n  theme_minimal()\n\n\n\n\nFrom this bar plot, we see that night is by far the most common time for UFOs to be sighted, with dawn (astronomial, nautical, and civil) being the least common times.\n\nufo_state &lt;- ufo_df |&gt; mutate(state = fct_recode(state, FL = \"Fl\")) |&gt;\n  group_by(state) |&gt;\n  summarise(count = n()) |&gt;\n  mutate(state = fct_reorder(state, count))\nggplot(ufo_state, aes(x = state, y = count)) +\n  geom_col() + \n  coord_flip() +\n  theme_minimal() +\n  theme(axis.text = element_text(size = 7))\n\n\n\n\nFrom this plot we can see that California is the most common place where UFOs are sighted, having over 11,000 recorded sightings since 1925,followed by Florida. Washington DC has the least amount of sightings with less than 100.\nConclusion and Wrap-Up\nIn recent years, UFO sightings have been more common, particularly around the year 2016/2017. The night is the most common time among the UFO sightings and California is the state with the most amount of sightings. In the future, it would be interesting to look at each sighting to see if there are multiple reports for the same sighting by different people, rather than just looking at which years, places, and times were more common overall.\nConnection to Class Ideas\nThese visualizations connect to class as they are strategically chosen to show as much about the data as possible. For example, the histogram was chosen for date as it shows the center, spread, shape, and approximately the sample size, which another plot, such as a density plot, would not have shown all of these attributes of the data. Similarly, a bar plot was chosen so that the sample size and distribution could easily be seen. Additionally, the bar plots were arranged in descending order so that the audience could compare the values easier. Lastly, the theme needed to be adjusted for the state bar plot, as the names of the states were overlapping on the y axis. All of these choices relate to what we have been talking about in class on how to make the visualizations easy for the reader to see and interpret the data properly."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nFeb 3, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\n  \n\n\n\n\nBlog Post 1: UFO Sightings\n\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nOlivia Varricchione\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  }
+]
