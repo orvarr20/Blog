@@ -43,7 +43,7 @@ ggplot(ufo_day_part, aes(x = day_part, y = count)) +
 
 From this bar plot, we see that night is by far the most common time for UFOs to be sighted, with dawn (astronomial, nautical, and civil) being the least common times.
 
-```{r}  
+```{r}
 #| warning: false
 ufo_state <- ufo_df |> mutate(state = fct_recode(state, FL = "Fl")) |>
   group_by(state) |>

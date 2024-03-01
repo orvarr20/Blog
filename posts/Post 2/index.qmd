@@ -34,7 +34,7 @@ ggplot(data = percent_data, aes(x = major_category, y = mean)) +
   labs(y = "Mean", x = "Major Category")
 ```
 
-From this graph, we see that healthcare practitioners  and sales/office have the highest percent of female workers at around 65% and 59% respectively. We also see that natural resources, construction, and maintenance has the lowest percent of females with about 5%.
+From this graph, we see that healthcare practitioners and sales/office have the highest percent of female workers at around 65% and 59% respectively. We also see that natural resources, construction, and maintenance has the lowest percent of females with about 5%.
 
 ```{r}
 wage_data <- jobs_gender |> select(year, wage_percent_of_male) |>
@@ -54,7 +54,7 @@ ggplot(data = wage_data, aes(x = year, y = mean)) +
   labs(x = "Year", y = "Mean wage percent of male")
 ```
 
-From this visualization, we see that there has been some increase in the mean wage percent of male from 2013 to 2016. However, we also see that there is a fair amount of variability within the data, likely due to the differences across occupations. 
+From this visualization, we see that there has been some increase in the mean wage percent of male from 2013 to 2016. However, we also see that there is a fair amount of variability within the data, likely due to the differences across occupations.
 
 ```{r}
 library(broom)
