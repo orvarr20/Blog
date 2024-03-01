@@ -13,7 +13,6 @@ about:
     - icon: github
       text: Github
       href: https://github.com
-
 ---
 
-About this blog
+This is a analysis blog for a data visualization course at St. Lawrence University.
