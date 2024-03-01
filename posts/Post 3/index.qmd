@@ -1,7 +1,7 @@
 ---
 title: "Blog Post 3: Chocolate Rating"
 author: "Olivia Varricchione"
-date: "2024-03-1"
+date: "2024-03-2"
 categories: [analysis]
 ---
 
