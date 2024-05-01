@@ -1,9 +1,8 @@
 ---
 title: "Final Project Summary"
 author: "Olivia Varricchione"
-format: 
-  html:
-    embed-resources: true
+date: "2024-02-20"
+categories: [analysis]
 ---
 
 ```{r}
@@ -340,5 +339,4 @@ This graph shows us that Fred unmasks the culprit the most, with Velma having th
 
 **Conclusion**
 
-From this analysis, we have seen taht Daphnie captures the most, Shaggy says zoinks the most, Scooby catches the culprit the most, Daphnie snacks most consistently, and Fred unmasks the monster the most. It is important to note that there is a limitation when looking at who snacks the most. The variable for snacking is a simple boolean variable of whether or not the character snacks in that episode. It does not take into account how many snacks that individual character consumed that episode, and there is a wide range of snacks ranging from 1 to a truck load to a lifetime supply which significantly impacts the comparison ability for the snacking habits of the characters. With more time for analysis, it would be interesting to predict either the engagement or imbd rating based on characteristics of the episodes, focusing on the ones I looked at to see if who unmasks or catches the monster, etc. impacts the rating and engagement of that episode. 
-
+From this analysis, we have seen taht Daphnie captures the most, Shaggy says zoinks the most, Scooby catches the culprit the most, Daphnie snacks most consistently, and Fred unmasks the monster the most. It is important to note that there is a limitation when looking at who snacks the most. The variable for snacking is a simple boolean variable of whether or not the character snacks in that episode. It does not take into account how many snacks that individual character consumed that episode, and there is a wide range of snacks ranging from 1 to a truck load to a lifetime supply which significantly impacts the comparison ability for the snacking habits of the characters. With more time for analysis, it would be interesting to predict either the engagement or imbd rating based on characteristics of the episodes, focusing on the ones I looked at to see if who unmasks or catches the monster, etc. impacts the rating and engagement of that episode.
